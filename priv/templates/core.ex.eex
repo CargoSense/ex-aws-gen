@@ -1,0 +1,24 @@
+defmodule ExAws.<%= @module %>.Core do
+  @actions [
+<%=
+    @api["operations"]
+    |> Map.keys
+    |> Enum.map(&("    \"#{&1}\""))
+    |> Enum.join(",\n")
+  %>]
+
+<%= for {op, _} <- @api["operations"] do %>
+  @doc """
+  <%= op %>
+
+<%= @docs["operations"][op] %>
+  """
+  def <%= Mix.Utils.underscore(op) %>(client, input) do
+    request(client, "<%= op %>", input)
+  end
+<%= end %>
+
+  defp request(%{__struct__: client_module} = client, action, input) do
+    client_module.request(client, action, input)
+  end
+end

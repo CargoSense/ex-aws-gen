@@ -1,0 +1,214 @@
+{
+  "workspaces": {
+    "path": "workspaces/2015-04-08",
+    "module": "Workspaces"
+  },
+  "swf": {
+    "path": "swf/2012-01-25",
+    "module": "Swf"
+  },
+  "support": {
+    "path": "support/2013-04-15",
+    "module": "Support"
+  },
+  "sts": {
+    "path": "sts/2011-06-15",
+    "module": "Sts"
+  },
+  "streams.dynamodb": {
+    "path": "streams.dynamodb/2012-08-10",
+    "module": "Streams.dynamodb"
+  },
+  "storagegateway": {
+    "path": "storagegateway/2013-06-30",
+    "module": "Storagegateway"
+  },
+  "ssm": {
+    "path": "ssm/2014-11-06",
+    "module": "Ssm"
+  },
+  "sqs": {
+    "path": "sqs/2012-11-05",
+    "module": "Sqs"
+  },
+  "sns": {
+    "path": "sns/2010-03-31",
+    "module": "Sns"
+  },
+  "sdb": {
+    "path": "sdb/2009-04-15",
+    "module": "Sdb"
+  },
+  "s3": {
+    "path": "s3/2006-03-01",
+    "module": "S3"
+  },
+  "route53domains": {
+    "path": "route53domains/2014-05-15",
+    "module": "Route53domains"
+  },
+  "route53": {
+    "path": "route53/2013-04-01",
+    "module": "Route53"
+  },
+  "redshift": {
+    "path": "redshift/2012-12-01",
+    "module": "Redshift"
+  },
+  "rds": {
+    "path": "rds/2014-10-31",
+    "module": "Rds"
+  },
+  "opsworks": {
+    "path": "opsworks/2013-02-18",
+    "module": "Opsworks"
+  },
+  "monitoring": {
+    "path": "monitoring/2010-08-01",
+    "module": "Monitoring"
+  },
+  "mobileanalytics": {
+    "path": "mobileanalytics/2014-06-05",
+    "module": "Mobileanalytics"
+  },
+  "machinelearning": {
+    "path": "machinelearning/2014-12-12",
+    "module": "Machinelearning"
+  },
+  "logs": {
+    "path": "logs/2014-03-28",
+    "module": "Logs"
+  },
+  "lambda": {
+    "path": "lambda/2014-11-11,2015-03-31",
+    "module": "Lambda"
+  },
+  "kms": {
+    "path": "kms/2014-11-01",
+    "module": "Kms"
+  },
+  "kinesis": {
+    "path": "kinesis/2013-12-02",
+    "module": "Kinesis"
+  },
+  "importexport": {
+    "path": "importexport/2010-06-01",
+    "module": "Importexport"
+  },
+  "iam": {
+    "path": "iam/2010-05-08",
+    "module": "Iam"
+  },
+  "glacier": {
+    "path": "glacier/2012-06-01",
+    "module": "Glacier"
+  },
+  "email": {
+    "path": "email/2010-12-01",
+    "module": "Email"
+  },
+  "elastictranscoder": {
+    "path": "elastictranscoder/2012-09-25",
+    "module": "Elastictranscoder"
+  },
+  "elasticmapreduce": {
+    "path": "elasticmapreduce/2009-03-31",
+    "module": "Elasticmapreduce"
+  },
+  "elasticloadbalancing": {
+    "path": "elasticloadbalancing/2012-06-01",
+    "module": "Elasticloadbalancing"
+  },
+  "elasticfilesystem": {
+    "path": "elasticfilesystem/2015-02-01",
+    "module": "Elasticfilesystem"
+  },
+  "elasticbeanstalk": {
+    "path": "elasticbeanstalk/2010-12-01",
+    "module": "Elasticbeanstalk"
+  },
+  "elasticache": {
+    "path": "elasticache/2015-02-02",
+    "module": "Elasticache"
+  },
+  "ecs": {
+    "path": "ecs/2014-11-13",
+    "module": "Ecs"
+  },
+  "ec2": {
+    "path": "ec2/2015-04-15",
+    "module": "Ec2"
+  },
+  "dynamodb": {
+    "path": "dynamodb/2012-08-10",
+    "module": "Dynamodb"
+  },
+  "ds": {
+    "path": "ds/2015-04-16",
+    "module": "Ds"
+  },
+  "directconnect": {
+    "path": "directconnect/2012-10-25",
+    "module": "Directconnect"
+  },
+  "devicefarm": {
+    "path": "devicefarm/2015-06-23",
+    "module": "Devicefarm"
+  },
+  "datapipeline": {
+    "path": "datapipeline/2012-10-29",
+    "module": "Datapipeline"
+  },
+  "config": {
+    "path": "config/2014-11-12",
+    "module": "Config"
+  },
+  "cognito-sync": {
+    "path": "cognito-sync/2014-06-30",
+    "module": "CognitoSync"
+  },
+  "cognito-identity": {
+    "path": "cognito-identity/2014-06-30",
+    "module": "CognitoIdentity"
+  },
+  "codepipeline": {
+    "path": "codepipeline/2015-07-09",
+    "module": "Codepipeline"
+  },
+  "codedeploy": {
+    "path": "codedeploy/2014-10-06",
+    "module": "Codedeploy"
+  },
+  "codecommit": {
+    "path": "codecommit/2015-04-13",
+    "module": "Codecommit"
+  },
+  "cloudtrail": {
+    "path": "cloudtrail/2013-11-01",
+    "module": "Cloudtrail"
+  },
+  "cloudsearchdomain": {
+    "path": "cloudsearchdomain/2013-01-01",
+    "module": "Cloudsearchdomain"
+  },
+  "cloudsearch": {
+    "path": "cloudsearch/2013-01-01",
+    "module": "Cloudsearch"
+  },
+  "cloudhsm": {
+    "path": "cloudhsm/2014-05-30",
+    "module": "Cloudhsm"
+  },
+  "cloudfront": {
+    "path": "cloudfront/2015-04-17",
+    "module": "Cloudfront"
+  },
+  "cloudformation": {
+    "path": "cloudformation/2010-05-15",
+    "module": "Cloudformation"
+  },
+  "autoscaling": {
+    "path": "autoscaling/2011-01-01",
+    "module": "Autoscaling"
+  }
+}

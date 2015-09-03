@@ -1,0 +1,2 @@
+defmodule ExAwsGen do
+end
