@@ -1,214 +1,291 @@
 {
   "workspaces": {
+    "test_op": "describe_workspaces",
     "path": "workspaces/2015-04-08",
-    "module": "Workspaces"
+    "module": "Workspaces",
+    "namespace": "workspaces"
   },
   "swf": {
+    "test_op": "list_domains",
     "path": "swf/2012-01-25",
-    "module": "Swf"
+    "module": "SWF",
+    "namespace": "swf"
   },
   "support": {
+    "test_op": "describe_cases",
     "path": "support/2013-04-15",
-    "module": "Support"
+    "module": "Support",
+    "namespace": "support"
   },
   "sts": {
     "path": "sts/2011-06-15",
-    "module": "Sts"
+    "module": "Sts",
+    "namespace": "sts"
   },
-  "streams.dynamodb": {
-    "path": "streams.dynamodb/2012-08-10",
-    "module": "Streams.dynamodb"
-  },
-  "storagegateway": {
+  "storage_gateway": {
+    "test_op": "list_gateways",
     "path": "storagegateway/2013-06-30",
-    "module": "Storagegateway"
+    "module": "StorageGateway",
+    "namespace": "storagegateway"
   },
   "ssm": {
+    "test_op": "list_documents",
     "path": "ssm/2014-11-06",
-    "module": "Ssm"
+    "module": "SSM",
+    "namespace": "ssm"
   },
   "sqs": {
     "path": "sqs/2012-11-05",
-    "module": "Sqs"
+    "module": "SQS",
+    "namespace": "sqs"
   },
   "sns": {
     "path": "sns/2010-03-31",
-    "module": "Sns"
+    "module": "SNS",
+    "namespace": "sns"
   },
   "sdb": {
     "path": "sdb/2009-04-15",
-    "module": "Sdb"
+    "module": "SDB",
+    "namespace": "sdb"
   },
   "s3": {
     "path": "s3/2006-03-01",
-    "module": "S3"
+    "module": "S3",
+    "namespace": "s3"
   },
-  "route53domains": {
+  "route_53_domains": {
+    "test_op": "list_domains",
     "path": "route53domains/2014-05-15",
-    "module": "Route53domains"
+    "module": "Route53Domains",
+    "namespace": "route53domains"
   },
   "route53": {
     "path": "route53/2013-04-01",
-    "module": "Route53"
+    "module": "Route53",
+    "namespace": "route53"
   },
   "redshift": {
     "path": "redshift/2012-12-01",
-    "module": "Redshift"
+    "module": "Redshift",
+    "namespace": "redshift"
   },
   "rds": {
     "path": "rds/2014-10-31",
-    "module": "Rds"
+    "module": "Rds",
+    "namespace": "rds"
   },
-  "opsworks": {
+  "ops_works": {
+    "test_op": "describe_apps",
     "path": "opsworks/2013-02-18",
-    "module": "Opsworks"
+    "module": "OpsWorks",
+    "namespace": "opsworks"
   },
   "monitoring": {
     "path": "monitoring/2010-08-01",
-    "module": "Monitoring"
+    "module": "Monitoring",
+    "namespace": "monitoring"
   },
   "mobileanalytics": {
     "path": "mobileanalytics/2014-06-05",
-    "module": "Mobileanalytics"
+    "module": "Mobileanalytics",
+    "namespace": "mobileanalytics"
   },
-  "machinelearning": {
+  "machine_learning": {
+    "test_op": "describe_data_sources",
     "path": "machinelearning/2014-12-12",
-    "module": "Machinelearning"
+    "module": "MachineLearning",
+    "namespace": "machinelearning"
   },
   "logs": {
+    "test_op": "describe_log_groups",
     "path": "logs/2014-03-28",
-    "module": "Logs"
+    "module": "Logs",
+    "namespace": "logs"
   },
   "lambda": {
-    "path": "lambda/2014-11-11,2015-03-31",
-    "module": "Lambda"
+    "path": "lambda/2015-03-31",
+    "module": "Lambda",
+    "namespace": "lambda"
   },
   "kms": {
+    "test_op": "list_keys",
     "path": "kms/2014-11-01",
-    "module": "Kms"
+    "module": "KMS",
+    "namespace": "kms"
   },
   "kinesis": {
     "path": "kinesis/2013-12-02",
-    "module": "Kinesis"
+    "module": "Kinesis",
+    "namespace": "kinesis"
   },
   "importexport": {
     "path": "importexport/2010-06-01",
-    "module": "Importexport"
+    "module": "Importexport",
+    "namespace": "importexport"
   },
   "iam": {
     "path": "iam/2010-05-08",
-    "module": "Iam"
+    "module": "Iam",
+    "namespace": "iam"
   },
   "glacier": {
     "path": "glacier/2012-06-01",
-    "module": "Glacier"
+    "module": "Glacier",
+    "namespace": "glacier"
   },
   "email": {
     "path": "email/2010-12-01",
-    "module": "Email"
+    "module": "Email",
+    "namespace": "email"
   },
   "elastictranscoder": {
     "path": "elastictranscoder/2012-09-25",
-    "module": "Elastictranscoder"
-  },
-  "elasticmapreduce": {
-    "path": "elasticmapreduce/2009-03-31",
-    "module": "Elasticmapreduce"
+    "module": "Elastictranscoder",
+    "namespace": "elastictranscoder"
   },
   "elasticloadbalancing": {
     "path": "elasticloadbalancing/2012-06-01",
-    "module": "Elasticloadbalancing"
+    "module": "Elasticloadbalancing",
+    "namespace": "elasticloadbalancing"
   },
   "elasticfilesystem": {
     "path": "elasticfilesystem/2015-02-01",
-    "module": "Elasticfilesystem"
+    "module": "Elasticfilesystem",
+    "namespace": "elasticfilesystem"
   },
   "elasticbeanstalk": {
     "path": "elasticbeanstalk/2010-12-01",
-    "module": "Elasticbeanstalk"
+    "module": "Elasticbeanstalk",
+    "namespace": "elasticbeanstalk"
   },
   "elasticache": {
     "path": "elasticache/2015-02-02",
-    "module": "Elasticache"
+    "module": "Elasticache",
+    "namespace": "elasticache"
+  },
+  "elastic_map_reduce": {
+    "test_op": "list_clusters",
+    "path": "elasticmapreduce/2009-03-31",
+    "module": "ElasticMapReduce",
+    "namespace": "elasticmapreduce"
   },
   "ecs": {
+    "test_op": "list_clusters",
     "path": "ecs/2014-11-13",
-    "module": "Ecs"
+    "module": "Ecs",
+    "namespace": "ecs"
   },
   "ec2": {
     "path": "ec2/2015-04-15",
-    "module": "Ec2"
+    "module": "Ec2",
+    "namespace": "ec2"
+  },
+  "dynamodb_streams": {
+    "test_op": "list_streams",
+    "path": "streams.dynamodb/2012-08-10",
+    "module": "Dynamodb.Streams",
+    "namespace": "dynamodbstreams"
   },
   "dynamodb": {
     "path": "dynamodb/2012-08-10",
-    "module": "Dynamodb"
+    "module": "Dynamodb",
+    "namespace": "dynamodb"
   },
-  "ds": {
+  "directory_service": {
+    "test_op": "describe_directories",
     "path": "ds/2015-04-16",
-    "module": "Ds"
+    "module": "DirectoryService",
+    "namespace": "directoryservice"
   },
-  "directconnect": {
+  "direct_connect": {
+    "test_op": "describe_connections",
     "path": "directconnect/2012-10-25",
-    "module": "Directconnect"
+    "module": "DirectConnect",
+    "namespace": "directconnect"
   },
-  "devicefarm": {
+  "device_farm": {
+    "test_op": "list_devices",
     "path": "devicefarm/2015-06-23",
-    "module": "Devicefarm"
+    "module": "DeviceFarm",
+    "namespace": "devicefarm"
   },
-  "datapipeline": {
+  "data_pipeline": {
+    "test_op": "list_pipelines",
     "path": "datapipeline/2012-10-29",
-    "module": "Datapipeline"
+    "module": "DataPipeline",
+    "namespace": "datapipeline"
   },
-  "config": {
-    "path": "config/2014-11-12",
-    "module": "Config"
+  "cognito_identity": {
+    "test_op": "list_identities",
+    "path": "cognito-identity/2014-06-30",
+    "module": "CognitoIdentity",
+    "namespace": "cognitoidentity"
   },
   "cognito-sync": {
     "path": "cognito-sync/2014-06-30",
-    "module": "CognitoSync"
+    "module": "CognitoSync",
+    "namespace": "cognito-sync"
   },
-  "cognito-identity": {
-    "path": "cognito-identity/2014-06-30",
-    "module": "CognitoIdentity"
-  },
-  "codepipeline": {
+  "code_pipeline": {
+    "test_op": "list_pipelines",
     "path": "codepipeline/2015-07-09",
-    "module": "Codepipeline"
+    "module": "CodePipeline",
+    "namespace": "codepipeline"
   },
-  "codedeploy": {
+  "code_deploy": {
+    "test_op": "list_applications",
     "path": "codedeploy/2014-10-06",
-    "module": "Codedeploy"
+    "module": "CodeDeploy",
+    "namespace": "codedeploy"
   },
-  "codecommit": {
+  "code_commit": {
+    "test_op": "list_repositories",
     "path": "codecommit/2015-04-13",
-    "module": "Codecommit"
-  },
-  "cloudtrail": {
-    "path": "cloudtrail/2013-11-01",
-    "module": "Cloudtrail"
+    "module": "CodeCommit",
+    "namespace": "codecommit"
   },
   "cloudsearchdomain": {
     "path": "cloudsearchdomain/2013-01-01",
-    "module": "Cloudsearchdomain"
+    "module": "Cloudsearchdomain",
+    "namespace": "cloudsearchdomain"
   },
   "cloudsearch": {
     "path": "cloudsearch/2013-01-01",
-    "module": "Cloudsearch"
-  },
-  "cloudhsm": {
-    "path": "cloudhsm/2014-05-30",
-    "module": "Cloudhsm"
+    "module": "Cloudsearch",
+    "namespace": "cloudsearch"
   },
   "cloudfront": {
     "path": "cloudfront/2015-04-17",
-    "module": "Cloudfront"
+    "module": "Cloudfront",
+    "namespace": "cloudfront"
   },
   "cloudformation": {
     "path": "cloudformation/2010-05-15",
-    "module": "Cloudformation"
+    "module": "Cloudformation",
+    "namespace": "cloudformation"
+  },
+  "cloud_trail": {
+    "test_op": "describe_trails",
+    "path": "cloudtrail/2013-11-01",
+    "module": "CloudTrail",
+    "namespace": "cloudtrail"
+  },
+  "cloud_hsm": {
+    "test_op": "list_hsms",
+    "path": "cloudhsm/2014-05-30",
+    "module": "CloudHSM",
+    "namespace": "cloudhsm"
+  },
+  "aws_config": {
+    "test_op": "describe_delivery_channels",
+    "path": "config/2014-11-12",
+    "module": "AWS.Config",
+    "namespace": "awsconfig"
   },
   "autoscaling": {
     "path": "autoscaling/2011-01-01",
-    "module": "Autoscaling"
+    "module": "Autoscaling",
+    "namespace": "autoscaling"
   }
 }

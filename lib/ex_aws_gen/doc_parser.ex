@@ -39,6 +39,8 @@ defmodule ExAwsGen.DocParser do
     |> String.replace("</i>", "*")
     |> String.replace("<p>", "")
     |> String.replace("</p>", "\n\n")
+    |> String.replace("<note>", "Note:")
+    |> String.replace("</note>", "")
   end
 
   @doc """
