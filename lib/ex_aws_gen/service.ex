@@ -1,11 +1,16 @@
 defmodule ExAwsGen.Service do
-  defstruct [:name, :docs, :module, :protocol, :metadata, :operations, :slug, :test_op, :namespace]
-  @black_list [:dynamodb, :s3, :kinesis, :lambda]
+  defstruct [:name, :docs, :module, :protocol, :metadata, :operations, :slug, :test_config, :namespace]
+
+  @black_list [:dynamodb, :s3, :kinesis, :lambda, :support, :device_farm]
+
   @api_root "./priv/apis/"
 
+  @services "./priv/services.json"
+  |> File.read!
+  |> Poison.decode!(keys: :atoms)
+
   def all do
-    Application.get_env(:ex_aws_gen, :services)
-    :maps.without @black_list, services
+    :maps.without @black_list, @services
   end
 
   def build(slug) do
@@ -23,7 +28,7 @@ defmodule ExAwsGen.Service do
       docs: docs,
       name: service_spec[:module],
       module: service_spec[:module],
-      test_op: service_spec[:test_op],
+      test_config: service_spec[:test_config],
       namespace: service_spec[:namespace]
     }
   end
@@ -34,11 +39,12 @@ defmodule ExAwsGen.Service do
   end
 
   def get_docs(path) do
-    File.read!(path <> "docs-2.json")
+    docs = File.read!(path <> "docs-2.json")
     |> Poison.decode!
-    |> Map.get("operations")
-    |> Enum.into(%{}, fn {k, v} ->
+
+    docs
+    |> update_in(["operations"], &Enum.into(&1, %{}, fn {k, v} ->
       {k, ExAwsGen.DocParser.format(v)}
-    end)
+    end))
   end
 end

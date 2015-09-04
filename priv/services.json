@@ -1,18 +1,18 @@
 {
   "workspaces": {
-    "test_op": "describe_workspaces",
+    "test_config": "describe_workspaces",
     "path": "workspaces/2015-04-08",
     "module": "Workspaces",
     "namespace": "workspaces"
   },
   "swf": {
-    "test_op": "list_domains",
+    "test_config": {"fun":"list_domains", "args":{"registrationStatus": "REGISTERED"}},
     "path": "swf/2012-01-25",
     "module": "SWF",
     "namespace": "swf"
   },
   "support": {
-    "test_op": "describe_cases",
+    "test_config": "describe_cases",
     "path": "support/2013-04-15",
     "module": "Support",
     "namespace": "support"
@@ -23,13 +23,13 @@
     "namespace": "sts"
   },
   "storage_gateway": {
-    "test_op": "list_gateways",
+    "test_config": "list_gateways",
     "path": "storagegateway/2013-06-30",
     "module": "StorageGateway",
     "namespace": "storagegateway"
   },
   "ssm": {
-    "test_op": "list_documents",
+    "test_config": "list_documents",
     "path": "ssm/2014-11-06",
     "module": "SSM",
     "namespace": "ssm"
@@ -55,7 +55,7 @@
     "namespace": "s3"
   },
   "route_53_domains": {
-    "test_op": "list_domains",
+    "test_config": "list_domains",
     "path": "route53domains/2014-05-15",
     "module": "Route53Domains",
     "namespace": "route53domains"
@@ -76,7 +76,7 @@
     "namespace": "rds"
   },
   "ops_works": {
-    "test_op": "describe_apps",
+    "test_config": "describe_stacks",
     "path": "opsworks/2013-02-18",
     "module": "OpsWorks",
     "namespace": "opsworks"
@@ -92,13 +92,13 @@
     "namespace": "mobileanalytics"
   },
   "machine_learning": {
-    "test_op": "describe_data_sources",
+    "test_config": "describe_data_sources",
     "path": "machinelearning/2014-12-12",
     "module": "MachineLearning",
     "namespace": "machinelearning"
   },
   "logs": {
-    "test_op": "describe_log_groups",
+    "test_config": "describe_log_groups",
     "path": "logs/2014-03-28",
     "module": "Logs",
     "namespace": "logs"
@@ -109,7 +109,7 @@
     "namespace": "lambda"
   },
   "kms": {
-    "test_op": "list_keys",
+    "test_config": "list_keys",
     "path": "kms/2014-11-01",
     "module": "KMS",
     "namespace": "kms"
@@ -165,13 +165,13 @@
     "namespace": "elasticache"
   },
   "elastic_map_reduce": {
-    "test_op": "list_clusters",
+    "test_config": "list_clusters",
     "path": "elasticmapreduce/2009-03-31",
     "module": "ElasticMapReduce",
     "namespace": "elasticmapreduce"
   },
   "ecs": {
-    "test_op": "list_clusters",
+    "test_config": "list_clusters",
     "path": "ecs/2014-11-13",
     "module": "Ecs",
     "namespace": "ecs"
@@ -182,10 +182,10 @@
     "namespace": "ec2"
   },
   "dynamodb_streams": {
-    "test_op": "list_streams",
+    "test_config": "list_streams",
     "path": "streams.dynamodb/2012-08-10",
     "module": "Dynamodb.Streams",
-    "namespace": "dynamodbstreams"
+    "namespace": "dynamodb"
   },
   "dynamodb": {
     "path": "dynamodb/2012-08-10",
@@ -193,34 +193,34 @@
     "namespace": "dynamodb"
   },
   "directory_service": {
-    "test_op": "describe_directories",
+    "test_config": "describe_directories",
     "path": "ds/2015-04-16",
     "module": "DirectoryService",
-    "namespace": "directoryservice"
+    "namespace": "galaxy"
   },
   "direct_connect": {
-    "test_op": "describe_connections",
+    "test_config": "describe_connections",
     "path": "directconnect/2012-10-25",
     "module": "DirectConnect",
     "namespace": "directconnect"
   },
   "device_farm": {
-    "test_op": "list_devices",
+    "test_config": "list_devices",
     "path": "devicefarm/2015-06-23",
     "module": "DeviceFarm",
     "namespace": "devicefarm"
   },
   "data_pipeline": {
-    "test_op": "list_pipelines",
+    "test_config": "list_pipelines",
     "path": "datapipeline/2012-10-29",
     "module": "DataPipeline",
     "namespace": "datapipeline"
   },
   "cognito_identity": {
-    "test_op": "list_identities",
+    "test_config": {"fun":"list_identity_pools", "args":{"MaxResults":1}},
     "path": "cognito-identity/2014-06-30",
     "module": "CognitoIdentity",
-    "namespace": "cognitoidentity"
+    "namespace": "cognito-identity"
   },
   "cognito-sync": {
     "path": "cognito-sync/2014-06-30",
@@ -228,19 +228,19 @@
     "namespace": "cognito-sync"
   },
   "code_pipeline": {
-    "test_op": "list_pipelines",
+    "test_config": "list_pipelines",
     "path": "codepipeline/2015-07-09",
     "module": "CodePipeline",
     "namespace": "codepipeline"
   },
   "code_deploy": {
-    "test_op": "list_applications",
+    "test_config": "list_applications",
     "path": "codedeploy/2014-10-06",
     "module": "CodeDeploy",
     "namespace": "codedeploy"
   },
   "code_commit": {
-    "test_op": "list_repositories",
+    "test_config": "list_repositories",
     "path": "codecommit/2015-04-13",
     "module": "CodeCommit",
     "namespace": "codecommit"
@@ -266,22 +266,22 @@
     "namespace": "cloudformation"
   },
   "cloud_trail": {
-    "test_op": "describe_trails",
+    "test_config": "describe_trails",
     "path": "cloudtrail/2013-11-01",
     "module": "CloudTrail",
     "namespace": "cloudtrail"
   },
   "cloud_hsm": {
-    "test_op": "list_hsms",
+    "test_config": "list_hsms",
     "path": "cloudhsm/2014-05-30",
     "module": "CloudHSM",
     "namespace": "cloudhsm"
   },
   "aws_config": {
-    "test_op": "describe_delivery_channels",
+    "test_config": "describe_delivery_channels",
     "path": "config/2014-11-12",
     "module": "AWS.Config",
-    "namespace": "awsconfig"
+    "namespace": "config"
   },
   "autoscaling": {
     "path": "autoscaling/2011-01-01",

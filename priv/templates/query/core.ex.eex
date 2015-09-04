@@ -7,19 +7,11 @@ defmodule ExAws.<%= @module %>.Core do
     |> Enum.join(",\n")
   %>]
 
-  @moduledoc """
-  ## <%= @metadata["serviceFullName"] %>
-
-<%= @docs["service"] |> ExAwsGen.DocParser.format %>
-
-
-  """
-
 <%= for {op, _} <- @operations do %>
   @doc """
   <%= op %>
 
-<%= @docs["operations"][op] %>
+<%= @docs[op] %>
   """
   def <%= Mix.Utils.underscore(op) %>(client, input) do
     request(client, "<%= op %>", input)
