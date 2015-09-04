@@ -2,12 +2,10 @@ defmodule ExAwsGen.Service do
   defstruct [:name, :docs, :module, :protocol, :metadata, :operations, :slug, :test_op, :namespace]
   @black_list [:dynamodb, :s3, :kinesis, :lambda]
   @api_root "./priv/apis/"
-  @services "./priv/services.json"
-  |> File.read!
-  |> Poison.decode!(keys: :atoms)
 
   def all do
-    :maps.without @black_list, @services
+    Application.get_env(:ex_aws_gen, :services)
+    :maps.without @black_list, services
   end
 
   def build(slug) do
