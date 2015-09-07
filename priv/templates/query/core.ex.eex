@@ -14,24 +14,26 @@ defmodule ExAws.<%= @module %>.Core do
   """
 
 <%= @type_info[:typespec] %>
-
 <%= for {op, %{"input" => %{"shape" => input}}} <- @api["operations"] do %>
+<%=
+  function = Mix.Utils.underscore(op)
+%>
   @doc """
   <%= op %>
 
 <%= @docs["operations"][op] %>
   """
-  @spec <%= Mix.Utils.underscore(op) %>(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.response_t
-  def <%= Mix.Utils.underscore(op) %>(client, input) do
+  @spec <%= function %>(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.response_t
+  def <%= function %>(client, input) do
     request(client, "<%= op %>", input)
   end
 
   @doc """
-  Same as `<%= Mix.Utils.underscore(op) %>/2` but raise on error.
+  Same as `<%= function %>/2` but raise on error.
   """
-  @spec <%= Mix.Utils.underscore(op) %>!(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.success_t | no_return
-  def <%= Mix.Utils.underscore(op) %>!(client, input) do
-    case <%= Mix.Utils.underscore(op) %>(client, input) do
+  @spec <%= function %>!(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.success_t | no_return
+  def <%= function %>!(client, input) do
+    case <%= function %>(client, input) do
       {:ok, results} -> results
       error -> raise "Error #{inspect(error)}"
     end
