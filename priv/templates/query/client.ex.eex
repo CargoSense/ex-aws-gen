@@ -1,11 +1,15 @@
 defmodule ExAws.<%= @module %>.Client do
-  defstruct config: nil, service: :"<%= @namespace %>"
+  defstruct config: nil, service: :"<%= @namespace %>", version: "<%= @version %>"
 
   @defaults [
     region: "us-east-1",
     port: 80,
     scheme: "https://",
-    host: "<%= @metadata["endpointPrefix"] %>.us-east-1.amazonaws.com"
+    host: "<%= case @metadata do
+      %{"endpointPrefix" => "sdb"} -> "sdb.amazonaws.com"
+      %{"globalEndpoint" => endpoint} -> endpoint
+      %{"endpointPrefix" => prefix} -> "#{prefix}.us-east-1.amazonaws.com"
+    end %>"
   ]
 
   def new(opts \\ []) do
@@ -18,7 +22,7 @@ defmodule ExAws.<%= @module %>.Client do
     |> Keyword.put(:"<%= @namespace %>", @defaults)
   end
 
-  def request(client, action, data) do
-    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(client, action, data)
+  def request(client, uri, action, data) do
+    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(client, uri, action, data)
   end
 end

@@ -1,7 +1,7 @@
 defmodule ExAwsGen do
 
-  @output "./priv/output"
-  # @output "../ex_aws"
+  # @output "./priv/output"
+  @output "../ex_aws"
   @lib_root @output <> "/lib/ex_aws/"
   @test_root @output <> "/test/lib/ex_aws/"
   @templates "./priv/templates/"

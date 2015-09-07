@@ -9,9 +9,9 @@
   "swf": {
     "test_config": {
       "fun": "list_domains",
-      "args": {
+      "args": [{
         "registration_status": "REGISTERED"
-      }
+      }]
     },
     "protocol": "json",
     "path": "swf/2012-01-25",
@@ -26,6 +26,7 @@
     "module": "Support"
   },
   "sts": {
+    "test_config": "get_session_token",
     "protocol": "query",
     "path": "sts/2011-06-15",
     "namespace": "sts",
@@ -53,7 +54,7 @@
     "module": "SQS"
   },
   "sns": {
-    "test_config": "list_domains",
+    "test_config": "list_topics",
     "protocol": "query",
     "path": "sns/2010-03-31",
     "namespace": "sns",
@@ -86,6 +87,7 @@
     "module": "Route53"
   },
   "redshift": {
+    "test_config": "describe_clusters",
     "protocol": "query",
     "path": "redshift/2012-12-01",
     "namespace": "redshift",
@@ -107,6 +109,7 @@
   },
   "monitoring": {
     "protocol": "query",
+    "test_config": "describe_alarms",
     "path": "monitoring/2010-08-01",
     "namespace": "monitoring",
     "module": "Monitoring"
@@ -150,14 +153,15 @@
     "namespace": "kinesis",
     "module": "Kinesis"
   },
-  "importexport": {
+  "import_export": {
+    "test_config": "list_jobs",
     "protocol": "query",
     "path": "importexport/2010-06-01",
     "namespace": "importexport",
-    "module": "Importexport"
+    "module": "ImportExport"
   },
   "iam": {
-    "test_config": "get_send_statistics",
+    "test_config": "list_users",
     "protocol": "query",
     "path": "iam/2010-05-08",
     "namespace": "iam",
@@ -170,42 +174,47 @@
     "module": "Glacier"
   },
   "email": {
-    "test_config": "get_send_statistics",
+    "test_config": {
+      "fun": "get_send_statistics",
+      "args": []
+    },
     "protocol": "query",
     "path": "email/2010-12-01",
     "namespace": "email",
     "module": "Email"
   },
-  "elastictranscoder": {
+  "elastic_transcoder": {
     "protocol": "rest-json",
     "path": "elastictranscoder/2012-09-25",
     "namespace": "elastictranscoder",
     "module": "Elastictranscoder"
   },
-  "elasticloadbalancing": {
+  "elastic_load_balancing": {
+    "test_config": "describe_load_balancers",
     "protocol": "query",
     "path": "elasticloadbalancing/2012-06-01",
     "namespace": "elasticloadbalancing",
-    "module": "Elasticloadbalancing"
+    "module": "ElasticLoadBalancing"
   },
-  "elasticfilesystem": {
+  "elastic_filesystem": {
     "protocol": "rest-json",
     "path": "elasticfilesystem/2015-02-01",
     "namespace": "elasticfilesystem",
     "module": "Elasticfilesystem"
   },
-  "elasticbeanstalk": {
+  "elastic_beanstalk": {
+    "test_config": "describe_applications",
     "protocol": "query",
     "path": "elasticbeanstalk/2010-12-01",
     "namespace": "elasticbeanstalk",
-    "module": "Elasticbeanstalk"
+    "module": "ElasticBeanstalk"
   },
-  "elasticache": {
+  "elasti_cache": {
     "test_config": "describe_cache_clusters",
     "protocol": "query",
     "path": "elasticache/2015-02-02",
     "namespace": "elasticache",
-    "module": "Elasticache"
+    "module": "ElastiCache"
   },
   "elastic_map_reduce": {
     "test_config": "list_clusters",
@@ -271,9 +280,9 @@
   "cognito_identity": {
     "test_config": {
       "fun": "list_identity_pools",
-      "args": {
+      "args": [{
         "max_results": 1
-      }
+      }]
     },
     "protocol": "json",
     "path": "cognito-identity/2014-06-30",
@@ -314,6 +323,7 @@
     "module": "Cloudsearchdomain"
   },
   "cloudsearch": {
+    "test_config": "describe_domains",
     "protocol": "query",
     "path": "cloudsearch/2013-01-01",
     "namespace": "cloudsearch",

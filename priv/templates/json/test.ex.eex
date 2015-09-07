@@ -3,7 +3,7 @@ defmodule ExAws.<%= @module %>.Test do
   use ExUnit.Case, async: true
 
   test "Basic sanity check" do
-    assert {:ok, _} = ExAws.<%= @module %>.Client.new
-    |> ExAws.<%= @module %>.Core.<%= test_fun(@test_config) %>(<%= inspect json_args(@test_config)%>)
+    client = ExAws.<%= @module %>.Client.new
+    assert apply(ExAws.<%= @module %>.Core, :<%= test_fun(@test_config) %>, [client | <%= inspect json_args(@test_config)%>])
   end
 end

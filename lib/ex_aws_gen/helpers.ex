@@ -4,8 +4,8 @@ defmodule ExAwsGen.Helpers do
   def test_fun(_), do: "does_not_exist"
 
   def json_args(%{args: args}), do: args
-  def json_args(_), do: %{}
+  def json_args(_), do: [%{}]
 
   def query_args(%{args: args}), do: args
-  def query_args(_), do: []
+  def query_args(_), do: [[]]
 end

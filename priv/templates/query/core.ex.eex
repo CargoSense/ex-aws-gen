@@ -21,6 +21,7 @@ defmodule ExAws.<%= @module %>.Core do
     %{"input" => %{"shape" => input}} -> @type_info[:aliases] |> HashDict.fetch!(input)
     _ -> nil
   end
+  uri = info["http"]["requestUri"]
   protocol_name = @protocol |> ExAwsGen.Service.protocol_name
 %>
   @doc """
@@ -31,7 +32,7 @@ defmodule ExAws.<%= @module %>.Core do
 <%= if input_type_info do %>
   @spec <%= function %>(client :: ExAws.<%= @module %>.t, input :: <%= input_type_info %>) :: ExAws.Request.<%= protocol_name %>.response_t
   def <%= function %>(client, input) do
-    request(client, "<%= op %>", input)
+    request(client, "<%= uri %>", "<%= op %>", input)
   end
 
   @doc """
@@ -47,7 +48,7 @@ defmodule ExAws.<%= @module %>.Core do
 <%= else %>
   @spec <%= function %>(client :: ExAws.<%= @module %>.t) :: ExAws.Request.<%= protocol_name %>.response_t
   def <%= function %>(client) do
-    request(client, "<%= op %>", [])
+    request(client, "<%= uri %>", "<%= op %>", [])
   end
 
   @doc """
@@ -63,7 +64,7 @@ defmodule ExAws.<%= @module %>.Core do
 <% end %>
 <%= end %>
 
-  defp request(%{__struct__: client_module} = client, action, input) do
-    apply(client_module, :request, [client, action, input])
+  defp request(%{__struct__: client_module} = client, uri, action, input) do
+    apply(client_module, :request, [client, uri, action, input])
   end
 end
