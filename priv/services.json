@@ -53,6 +53,7 @@
     "module": "SQS"
   },
   "sns": {
+    "test_config": "list_domains",
     "protocol": "query",
     "path": "sns/2010-03-31",
     "namespace": "sns",
