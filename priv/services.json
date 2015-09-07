@@ -59,6 +59,7 @@
     "module": "SNS"
   },
   "sdb": {
+    "test_config": "list_domains",
     "protocol": "query",
     "path": "sdb/2009-04-15",
     "namespace": "sdb",
@@ -90,10 +91,11 @@
     "module": "Redshift"
   },
   "rds": {
+    "test_config": "describe_db_clusters",
     "protocol": "query",
     "path": "rds/2014-10-31",
     "namespace": "rds",
-    "module": "Rds"
+    "module": "RDS"
   },
   "ops_works": {
     "test_config": "describe_stacks",
@@ -154,6 +156,7 @@
     "module": "Importexport"
   },
   "iam": {
+    "test_config": "get_send_statistics",
     "protocol": "query",
     "path": "iam/2010-05-08",
     "namespace": "iam",
@@ -166,6 +169,7 @@
     "module": "Glacier"
   },
   "email": {
+    "test_config": "get_send_statistics",
     "protocol": "query",
     "path": "email/2010-12-01",
     "namespace": "email",
@@ -196,6 +200,7 @@
     "module": "Elasticbeanstalk"
   },
   "elasticache": {
+    "test_config": "describe_cache_clusters",
     "protocol": "query",
     "path": "elasticache/2015-02-02",
     "namespace": "elasticache",

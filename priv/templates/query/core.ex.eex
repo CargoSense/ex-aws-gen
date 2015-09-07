@@ -14,16 +14,22 @@ defmodule ExAws.<%= @module %>.Core do
   """
 
 <%= @type_info[:typespec] %>
-<%= for {op, %{"input" => %{"shape" => input}}} <- @api["operations"] do %>
-<%=
+<%= for {op, info} <- @api["operations"] do %>
+<%
   function = Mix.Utils.underscore(op)
+  input_type_info = case info do
+    %{"input" => %{"shape" => input}} -> @type_info[:aliases] |> HashDict.fetch!(input)
+    _ -> nil
+  end
+  protocol_name = @protocol |> ExAwsGen.Service.protocol_name
 %>
   @doc """
   <%= op %>
 
 <%= @docs["operations"][op] %>
   """
-  @spec <%= function %>(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.response_t
+<%= if input_type_info do %>
+  @spec <%= function %>(client :: ExAws.<%= @module %>.t, input :: <%= input_type_info %>) :: ExAws.Request.<%= protocol_name %>.response_t
   def <%= function %>(client, input) do
     request(client, "<%= op %>", input)
   end
@@ -31,13 +37,30 @@ defmodule ExAws.<%= @module %>.Core do
   @doc """
   Same as `<%= function %>/2` but raise on error.
   """
-  @spec <%= function %>!(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.success_t | no_return
+  @spec <%= function %>!(client :: ExAws.<%= @module %>.t, input :: <%= input_type_info %>) :: ExAws.Request.<%= protocol_name %>.success_t | no_return
   def <%= function %>!(client, input) do
     case <%= function %>(client, input) do
       {:ok, results} -> results
       error -> raise "Error #{inspect(error)}"
     end
   end
+<%= else %>
+  @spec <%= function %>(client :: ExAws.<%= @module %>.t) :: ExAws.Request.<%= protocol_name %>.response_t
+  def <%= function %>(client) do
+    request(client, "<%= op %>", [])
+  end
+
+  @doc """
+  Same as `<%= function %>/2` but raise on error.
+  """
+  @spec <%= function %>!(client :: ExAws.<%= @module %>.t) :: ExAws.Request.<%= protocol_name %>.success_t | no_return
+  def <%= function %>!(client) do
+    case <%= function %>(client) do
+      {:ok, results} -> results
+      error -> raise "Error #{inspect(error)}"
+    end
+  end
+<% end %>
 <%= end %>
 
   defp request(%{__struct__: client_module} = client, action, input) do
