@@ -1,20 +1,20 @@
-defmodule ExAws.<%= @module %>.Request do
+defmodule ExAws.Request.Query do
   @moduledoc false
-  # <%= @module %> specific request logic.
+  # Query style specific request logic.
 
-  def request(client, action, data) do
+  def request(client, action, params) do
+    query = params
+    |> Enum.into(%{})
+    |> Map.put("Action", action)
+    |> URI.encode_query
+
+    url = client.config
+    |> url
+
     headers = [
-      {"x-amz-target", "<%= @metadata["targetPrefix"] %>.#{action}"},
-      {"content-type", "application/x-amz-json-<%= @metadata["jsonVersion"] %>"},
-      {"x-amz-content-sha256", ""}
+      {"content-type", "application/x-www-form-urlencoded"},
     ]
-    ExAws.Request.request(:post, client.config |> url, data, headers, client)
-    |> parse(client.config)
-  end
-
-  def parse({:error, result}, _), do: {:error, result}
-  def parse({:ok, %{body: body}}, config) do
-    {:ok, config[:json_codec].decode!(body)}
+    ExAws.Request.request(:post, url, query, headers, client)
   end
 
   defp url(%{scheme: scheme, host: host}) do

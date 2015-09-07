@@ -4,6 +4,6 @@ defmodule ExAws.<%= @module %>.Test do
 
   test "Basic integration test" do
     assert {:ok, _} = ExAws.<%= @module %>.new
-    |> ExAws.<%= @module %>.Core.<%= test_fun(@test_config) %>(<%= inspect json_args(@test_config)%>)
+    |> ExAws.<%= @module %>.Core.<%= test_fun(@test_config) %>(<%= inspect query_args(@test_config)%>)
   end
 end

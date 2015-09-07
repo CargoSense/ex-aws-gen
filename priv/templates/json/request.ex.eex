@@ -1,11 +1,11 @@
-defmodule ExAws.<%= @module %>.Request do
+defmodule ExAws.Request.JSON do
   @moduledoc false
-  # <%= @module %> specific request logic.
+  # JSON style api specific request logic.
 
-  def request(client, action, data) do
+  def request(client, action, data, target_prefix, json_version) do
     headers = [
-      {"x-amz-target", "<%= @metadata["targetPrefix"] %>.#{action}"},
-      {"content-type", "application/x-amz-json-<%= @metadata["jsonVersion"] %>"},
+      {"x-amz-target", "#{target_prefix}.#{action}"},
+      {"content-type", "application/x-amz-json-#{json_version}"},
       {"x-amz-content-sha256", ""}
     ]
     ExAws.Request.request(:post, client.config |> url, data, headers, client)

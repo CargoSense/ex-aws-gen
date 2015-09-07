@@ -19,6 +19,6 @@ defmodule ExAws.<%= @module %> do
   end
 
   def request(client, action, data) do
-    ExAws.<%= @module %>.Request.request(client, action, data)
+    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(client, action, data)
   end
 end

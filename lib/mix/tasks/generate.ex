@@ -2,11 +2,7 @@ defmodule Mix.Tasks.Generate do
   @shortdoc "Generate an API"
 
   def run(["--protocol", protocol]) do
-    ExAwsGen.Service.all
-    |> Map.keys
-    |> Stream.map(&ExAwsGen.Service.build/1)
-    |> Stream.filter(&(&1.protocol == protocol))
-    |> Enum.map(&ExAwsGen.generate/1)
+    ExAwsGen.generate(protocol: protocol)
   end
 
   def run([slug]) do

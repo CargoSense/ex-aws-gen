@@ -1,291 +1,357 @@
 {
   "workspaces": {
     "test_config": "describe_workspaces",
+    "protocol": "json",
     "path": "workspaces/2015-04-08",
-    "module": "Workspaces",
-    "namespace": "workspaces"
+    "namespace": "workspaces",
+    "module": "Workspaces"
   },
   "swf": {
-    "test_config": {"fun":"list_domains", "args":{"registrationStatus": "REGISTERED"}},
+    "test_config": {
+      "fun": "list_domains",
+      "args": {
+        "registration_status": "REGISTERED"
+      }
+    },
+    "protocol": "json",
     "path": "swf/2012-01-25",
-    "module": "SWF",
-    "namespace": "swf"
+    "namespace": "swf",
+    "module": "SWF"
   },
   "support": {
     "test_config": "describe_cases",
+    "protocol": "json",
     "path": "support/2013-04-15",
-    "module": "Support",
-    "namespace": "support"
+    "namespace": "support",
+    "module": "Support"
   },
   "sts": {
+    "protocol": "query",
     "path": "sts/2011-06-15",
-    "module": "Sts",
-    "namespace": "sts"
+    "namespace": "sts",
+    "module": "Sts"
   },
   "storage_gateway": {
     "test_config": "list_gateways",
+    "protocol": "json",
     "path": "storagegateway/2013-06-30",
-    "module": "StorageGateway",
-    "namespace": "storagegateway"
+    "namespace": "storagegateway",
+    "module": "StorageGateway"
   },
   "ssm": {
     "test_config": "list_documents",
+    "protocol": "json",
     "path": "ssm/2014-11-06",
-    "module": "SSM",
-    "namespace": "ssm"
+    "namespace": "ssm",
+    "module": "SSM"
   },
   "sqs": {
+    "test_config": "list_queues",
+    "protocol": "query",
     "path": "sqs/2012-11-05",
-    "module": "SQS",
-    "namespace": "sqs"
+    "namespace": "sqs",
+    "module": "SQS"
   },
   "sns": {
+    "protocol": "query",
     "path": "sns/2010-03-31",
-    "module": "SNS",
-    "namespace": "sns"
+    "namespace": "sns",
+    "module": "SNS"
   },
   "sdb": {
+    "protocol": "query",
     "path": "sdb/2009-04-15",
-    "module": "SDB",
-    "namespace": "sdb"
+    "namespace": "sdb",
+    "module": "SDB"
   },
   "s3": {
+    "protocol": "rest-xml",
     "path": "s3/2006-03-01",
-    "module": "S3",
-    "namespace": "s3"
+    "namespace": "s3",
+    "module": "S3"
   },
   "route_53_domains": {
     "test_config": "list_domains",
+    "protocol": "json",
     "path": "route53domains/2014-05-15",
-    "module": "Route53Domains",
-    "namespace": "route53domains"
+    "namespace": "route53domains",
+    "module": "Route53Domains"
   },
   "route53": {
+    "protocol": "rest-xml",
     "path": "route53/2013-04-01",
-    "module": "Route53",
-    "namespace": "route53"
+    "namespace": "route53",
+    "module": "Route53"
   },
   "redshift": {
+    "protocol": "query",
     "path": "redshift/2012-12-01",
-    "module": "Redshift",
-    "namespace": "redshift"
+    "namespace": "redshift",
+    "module": "Redshift"
   },
   "rds": {
+    "protocol": "query",
     "path": "rds/2014-10-31",
-    "module": "Rds",
-    "namespace": "rds"
+    "namespace": "rds",
+    "module": "Rds"
   },
   "ops_works": {
     "test_config": "describe_stacks",
+    "protocol": "json",
     "path": "opsworks/2013-02-18",
-    "module": "OpsWorks",
-    "namespace": "opsworks"
+    "namespace": "opsworks",
+    "module": "OpsWorks"
   },
   "monitoring": {
+    "protocol": "query",
     "path": "monitoring/2010-08-01",
-    "module": "Monitoring",
-    "namespace": "monitoring"
+    "namespace": "monitoring",
+    "module": "Monitoring"
   },
   "mobileanalytics": {
+    "protocol": "rest-json",
     "path": "mobileanalytics/2014-06-05",
-    "module": "Mobileanalytics",
-    "namespace": "mobileanalytics"
+    "namespace": "mobileanalytics",
+    "module": "Mobileanalytics"
   },
   "machine_learning": {
     "test_config": "describe_data_sources",
+    "protocol": "json",
     "path": "machinelearning/2014-12-12",
-    "module": "MachineLearning",
-    "namespace": "machinelearning"
+    "namespace": "machinelearning",
+    "module": "MachineLearning"
   },
   "logs": {
     "test_config": "describe_log_groups",
+    "protocol": "json",
     "path": "logs/2014-03-28",
-    "module": "Logs",
-    "namespace": "logs"
+    "namespace": "logs",
+    "module": "Logs"
   },
   "lambda": {
+    "protocol": "rest-json",
     "path": "lambda/2015-03-31",
-    "module": "Lambda",
-    "namespace": "lambda"
+    "namespace": "lambda",
+    "module": "Lambda"
   },
   "kms": {
     "test_config": "list_keys",
+    "protocol": "json",
     "path": "kms/2014-11-01",
-    "module": "KMS",
-    "namespace": "kms"
+    "namespace": "kms",
+    "module": "KMS"
   },
   "kinesis": {
+    "protocol": "json",
     "path": "kinesis/2013-12-02",
-    "module": "Kinesis",
-    "namespace": "kinesis"
+    "namespace": "kinesis",
+    "module": "Kinesis"
   },
   "importexport": {
+    "protocol": "query",
     "path": "importexport/2010-06-01",
-    "module": "Importexport",
-    "namespace": "importexport"
+    "namespace": "importexport",
+    "module": "Importexport"
   },
   "iam": {
+    "protocol": "query",
     "path": "iam/2010-05-08",
-    "module": "Iam",
-    "namespace": "iam"
+    "namespace": "iam",
+    "module": "Iam"
   },
   "glacier": {
+    "protocol": "rest-json",
     "path": "glacier/2012-06-01",
-    "module": "Glacier",
-    "namespace": "glacier"
+    "namespace": "glacier",
+    "module": "Glacier"
   },
   "email": {
+    "protocol": "query",
     "path": "email/2010-12-01",
-    "module": "Email",
-    "namespace": "email"
+    "namespace": "email",
+    "module": "Email"
   },
   "elastictranscoder": {
+    "protocol": "rest-json",
     "path": "elastictranscoder/2012-09-25",
-    "module": "Elastictranscoder",
-    "namespace": "elastictranscoder"
+    "namespace": "elastictranscoder",
+    "module": "Elastictranscoder"
   },
   "elasticloadbalancing": {
+    "protocol": "query",
     "path": "elasticloadbalancing/2012-06-01",
-    "module": "Elasticloadbalancing",
-    "namespace": "elasticloadbalancing"
+    "namespace": "elasticloadbalancing",
+    "module": "Elasticloadbalancing"
   },
   "elasticfilesystem": {
+    "protocol": "rest-json",
     "path": "elasticfilesystem/2015-02-01",
-    "module": "Elasticfilesystem",
-    "namespace": "elasticfilesystem"
+    "namespace": "elasticfilesystem",
+    "module": "Elasticfilesystem"
   },
   "elasticbeanstalk": {
+    "protocol": "query",
     "path": "elasticbeanstalk/2010-12-01",
-    "module": "Elasticbeanstalk",
-    "namespace": "elasticbeanstalk"
+    "namespace": "elasticbeanstalk",
+    "module": "Elasticbeanstalk"
   },
   "elasticache": {
+    "protocol": "query",
     "path": "elasticache/2015-02-02",
-    "module": "Elasticache",
-    "namespace": "elasticache"
+    "namespace": "elasticache",
+    "module": "Elasticache"
   },
   "elastic_map_reduce": {
     "test_config": "list_clusters",
+    "protocol": "json",
     "path": "elasticmapreduce/2009-03-31",
-    "module": "ElasticMapReduce",
-    "namespace": "elasticmapreduce"
+    "namespace": "elasticmapreduce",
+    "module": "ElasticMapReduce"
   },
   "ecs": {
     "test_config": "list_clusters",
+    "protocol": "json",
     "path": "ecs/2014-11-13",
-    "module": "Ecs",
-    "namespace": "ecs"
+    "namespace": "ecs",
+    "module": "Ecs"
   },
   "ec2": {
+    "protocol": "ec2",
     "path": "ec2/2015-04-15",
-    "module": "Ec2",
-    "namespace": "ec2"
+    "namespace": "ec2",
+    "module": "Ec2"
   },
   "dynamodb_streams": {
     "test_config": "list_streams",
+    "protocol": "json",
     "path": "streams.dynamodb/2012-08-10",
-    "module": "Dynamodb.Streams",
-    "namespace": "dynamodb"
+    "namespace": "dynamodb",
+    "module": "Dynamodb.Streams"
   },
   "dynamodb": {
+    "protocol": "json",
     "path": "dynamodb/2012-08-10",
-    "module": "Dynamodb",
-    "namespace": "dynamodb"
+    "namespace": "dynamodb",
+    "module": "Dynamodb"
   },
   "directory_service": {
     "test_config": "describe_directories",
+    "protocol": "json",
     "path": "ds/2015-04-16",
-    "module": "DirectoryService",
-    "namespace": "galaxy"
+    "namespace": "galaxy",
+    "module": "DirectoryService"
   },
   "direct_connect": {
     "test_config": "describe_connections",
+    "protocol": "json",
     "path": "directconnect/2012-10-25",
-    "module": "DirectConnect",
-    "namespace": "directconnect"
+    "namespace": "directconnect",
+    "module": "DirectConnect"
   },
   "device_farm": {
     "test_config": "list_devices",
+    "protocol": "json",
     "path": "devicefarm/2015-06-23",
-    "module": "DeviceFarm",
-    "namespace": "devicefarm"
+    "namespace": "devicefarm",
+    "module": "DeviceFarm"
   },
   "data_pipeline": {
     "test_config": "list_pipelines",
+    "protocol": "json",
     "path": "datapipeline/2012-10-29",
-    "module": "DataPipeline",
-    "namespace": "datapipeline"
+    "namespace": "datapipeline",
+    "module": "DataPipeline"
   },
   "cognito_identity": {
-    "test_config": {"fun":"list_identity_pools", "args":{"MaxResults":1}},
+    "test_config": {
+      "fun": "list_identity_pools",
+      "args": {
+        "max_results": 1
+      }
+    },
+    "protocol": "json",
     "path": "cognito-identity/2014-06-30",
-    "module": "CognitoIdentity",
-    "namespace": "cognito-identity"
+    "namespace": "cognito-identity",
+    "module": "CognitoIdentity"
   },
   "cognito-sync": {
+    "protocol": "rest-json",
     "path": "cognito-sync/2014-06-30",
-    "module": "CognitoSync",
-    "namespace": "cognito-sync"
+    "namespace": "cognito-sync",
+    "module": "CognitoSync"
   },
   "code_pipeline": {
     "test_config": "list_pipelines",
+    "protocol": "json",
     "path": "codepipeline/2015-07-09",
-    "module": "CodePipeline",
-    "namespace": "codepipeline"
+    "namespace": "codepipeline",
+    "module": "CodePipeline"
   },
   "code_deploy": {
     "test_config": "list_applications",
+    "protocol": "json",
     "path": "codedeploy/2014-10-06",
-    "module": "CodeDeploy",
-    "namespace": "codedeploy"
+    "namespace": "codedeploy",
+    "module": "CodeDeploy"
   },
   "code_commit": {
     "test_config": "list_repositories",
+    "protocol": "json",
     "path": "codecommit/2015-04-13",
-    "module": "CodeCommit",
-    "namespace": "codecommit"
+    "namespace": "codecommit",
+    "module": "CodeCommit"
   },
   "cloudsearchdomain": {
+    "protocol": "rest-json",
     "path": "cloudsearchdomain/2013-01-01",
-    "module": "Cloudsearchdomain",
-    "namespace": "cloudsearchdomain"
+    "namespace": "cloudsearchdomain",
+    "module": "Cloudsearchdomain"
   },
   "cloudsearch": {
+    "protocol": "query",
     "path": "cloudsearch/2013-01-01",
-    "module": "Cloudsearch",
-    "namespace": "cloudsearch"
+    "namespace": "cloudsearch",
+    "module": "Cloudsearch"
   },
   "cloudfront": {
+    "protocol": "rest-xml",
     "path": "cloudfront/2015-04-17",
-    "module": "Cloudfront",
-    "namespace": "cloudfront"
+    "namespace": "cloudfront",
+    "module": "Cloudfront"
   },
   "cloudformation": {
+    "test_config": "list_stacks",
+    "protocol": "query",
     "path": "cloudformation/2010-05-15",
-    "module": "Cloudformation",
-    "namespace": "cloudformation"
+    "namespace": "cloudformation",
+    "module": "Cloudformation"
   },
   "cloud_trail": {
     "test_config": "describe_trails",
+    "protocol": "json",
     "path": "cloudtrail/2013-11-01",
-    "module": "CloudTrail",
-    "namespace": "cloudtrail"
+    "namespace": "cloudtrail",
+    "module": "CloudTrail"
   },
   "cloud_hsm": {
     "test_config": "list_hsms",
+    "protocol": "json",
     "path": "cloudhsm/2014-05-30",
-    "module": "CloudHSM",
-    "namespace": "cloudhsm"
+    "namespace": "cloudhsm",
+    "module": "CloudHSM"
   },
   "aws_config": {
     "test_config": "describe_delivery_channels",
+    "protocol": "json",
     "path": "config/2014-11-12",
-    "module": "AWS.Config",
-    "namespace": "config"
+    "namespace": "config",
+    "module": "AWS.Config"
   },
   "autoscaling": {
+    "test_config": "describe_tags",
+    "protocol": "query",
     "path": "autoscaling/2011-01-01",
-    "module": "Autoscaling",
-    "namespace": "autoscaling"
+    "namespace": "autoscaling",
+    "module": "Autoscaling"
   }
 }

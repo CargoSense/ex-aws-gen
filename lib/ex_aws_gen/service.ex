@@ -1,5 +1,16 @@
 defmodule ExAwsGen.Service do
-  defstruct [:name, :docs, :module, :protocol, :metadata, :operations, :slug, :test_config, :namespace]
+  alias ExAwsGen.Typespec
+  defstruct [
+    :name,
+    :docs,
+    :api,
+    :module,
+    :protocol,
+    :metadata,
+    :slug,
+    :test_config,
+    :typespec,
+    :namespace]
 
   @black_list [:dynamodb, :s3, :kinesis, :lambda, :support, :device_farm]
 
@@ -13,7 +24,15 @@ defmodule ExAwsGen.Service do
     :maps.without @black_list, @services
   end
 
+  def all_parsed do
+    all
+    |> Map.keys
+    |> Stream.map(&build/1)
+  end
+
   def build(slug) do
+    IO.puts "Generating #{slug}"
+
     service_spec = @services[slug]
 
     path = @api_root <> service_spec[:path] <> "/"
@@ -23,13 +42,14 @@ defmodule ExAwsGen.Service do
     %__MODULE__{
       slug: slug,
       protocol: api["metadata"]["protocol"],
-      operations: api["operations"],
       metadata: api["metadata"],
+      api: api,
       docs: docs,
       name: service_spec[:module],
       module: service_spec[:module],
       test_config: service_spec[:test_config],
-      namespace: service_spec[:namespace]
+      namespace: service_spec[:namespace],
+      typespec: Typespec.build(api["shapes"], slug)
     }
   end
 
@@ -47,4 +67,9 @@ defmodule ExAwsGen.Service do
       {k, ExAwsGen.DocParser.format(v)}
     end))
   end
+
+  def protocol_name("json"), do: "JSON"
+  def protocol_name("query"), do: "Query"
+  def protocol_file("json"), do: "json"
+  def protocol_file("query"), do: "query"
 end
