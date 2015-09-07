@@ -2,6 +2,9 @@ defmodule ExAws.Request.JSON do
   @moduledoc false
   # JSON style api specific request logic.
 
+  @type success_t :: %{}
+  @type response_t :: {:ok, success_t} | ExAws.Request.error_t
+
   def request(client, action, data, target_prefix, json_version) do
     headers = [
       {"x-amz-target", "#{target_prefix}.#{action}"},

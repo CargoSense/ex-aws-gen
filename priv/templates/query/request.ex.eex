@@ -2,6 +2,9 @@ defmodule ExAws.Request.Query do
   @moduledoc false
   # Query style specific request logic.
 
+  @type success_t :: binary
+  @type response_t :: {:ok, success_t} | ExAws.Request.error_t
+
   def request(client, action, params) do
     query = params
     |> Enum.into(%{})
