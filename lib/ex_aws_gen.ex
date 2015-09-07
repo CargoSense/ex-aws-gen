@@ -19,7 +19,6 @@ defmodule ExAwsGen do
     ExAwsGen.Common.generate(paths, protocol)
 
     ExAwsGen.Service.all
-    |> IO.inspect
     |> Enum.filter_map(&match?({_, %{protocol: ^protocol}}, &1), &elem(&1, 0))
     |> Enum.map(&generate_service/1)
   end
@@ -56,7 +55,7 @@ defmodule ExAwsGen do
   def files(service) do
     %{
       "core.ex.eex" => @lib_root <> "#{service.slug}/core.ex",
-      "service.ex.eex" => @lib_root <> "#{service.slug}.ex",
+      "client.ex.eex" => @lib_root <> "#{service.slug}/client.ex",
       "test.ex.eex" => @test_root <> "#{service.slug}_test.exs"
     }
   end

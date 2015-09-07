@@ -5,25 +5,22 @@ defmodule ExAwsGen.Typespec do
   @builtin_types ~w(boolean string integer float binary Boolean String Integer Float Binary)
 
   def build(shapes, prefix) do
-    aliases = shapes
-    |> Enum.reduce(HashDict.new, &build_type_aliases(&1, &2, prefix))
-    |> Enum.into(HashDict.new, fn {k, v} -> {v, k} end)
+    aliases = shapes |> build_type_aliases(prefix)
 
-    # aliases |> Enum.each(&IO.inspect/1)
-
-    shapes
+    typespec = shapes
     |> Enum.map(&type_specs_for_shape(&1, aliases))
     |> Enum.map(fn
       [] -> []
       iolist -> [iolist, "\n\n"]
     end)
     |> IO.iodata_to_binary
+    %{typespec: typespec, aliases: aliases}
   end
 
   def type_specs_for_shape({type, _}, _) when type in @builtin_types, do: []
 
   def type_specs_for_shape({type, %{"type" => "list", "member" => %{"shape" => member}}}, aliases) do
-    ["  @type ", HashDict.fetch!(aliases, type), " :: [", member_type(member, aliases), "]\n\n"]
+    ["  @type ", HashDict.fetch!(aliases, type), " :: [", member_type(member, aliases), "]"]
   end
   def type_specs_for_shape({type, %{"type" => "structure", "members" => members}}, aliases) do
     member_specs = Enum.map(members, fn {member_name, member} ->
@@ -77,7 +74,15 @@ defmodule ExAwsGen.Typespec do
   certain AWS APIs have two shapes that when underscored have the same name.
   IE: Endpoint and endpoint. This ensures that the latter are uniformly aliased.
   """
-  def build_type_aliases({type_name, _}, aliases, prefix) do
+  def build_type_aliases(shapes, prefix) do
+    shapes
+    |> Enum.reduce(HashDict.new, &do_build_type_aliases(&1, &2, prefix))
+    |> Enum.into(HashDict.new, fn {k, v} -> {v, k} end)
+    |> HashDict.put("Integer", "integer")
+    |> HashDict.put("String", "binary")
+    |> HashDict.put("string", "binary")
+  end
+  def do_build_type_aliases({type_name, _}, aliases, prefix) do
     elixir_name = elixir_type_name(type_name, prefix)
     case HashDict.fetch(aliases, elixir_name) do
       {:ok, _} -> HashDict.put(aliases, elixir_name <> "_name", type_name)
@@ -86,9 +91,9 @@ defmodule ExAwsGen.Typespec do
   end
 
   def elixir_type_name("Record", prefix), do: "#{prefix}_record"
-  def elixir_type_name("Integer", _), do: "integer"
-  def elixir_type_name("String", _), do: "binary"
-  def elixir_type_name("string", _), do: "binary"
+  def elixir_type_name("EC2" <> rest, _) do
+    "ec2_#{Mix.Utils.underscore(rest)}"
+  end
   def elixir_type_name(other, _), do: Mix.Utils.underscore(other)
 
   @doc """

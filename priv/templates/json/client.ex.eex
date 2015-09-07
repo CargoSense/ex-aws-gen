@@ -1,5 +1,10 @@
-defmodule ExAws.<%= @module %> do
+defmodule ExAws.<%= @module %>.Client do
   defstruct config: nil, service: :"<%= @namespace %>"
+
+  @type t :: %__MODULE__{config: %{}, service: atom}
+
+  @target_prefix "<%= @metadata["targetPrefix"] %>"
+  @json_version  "<%= @metadata["jsonVersion"] %>"
 
   @defaults [
     region: "us-east-1",
@@ -19,6 +24,6 @@ defmodule ExAws.<%= @module %> do
   end
 
   def request(client, action, data) do
-    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(client, action, data)
+    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(client, action, data, @target_prefix, @json_version)
   end
 end

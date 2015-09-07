@@ -9,7 +9,7 @@ defmodule ExAwsGen.Service do
     :metadata,
     :slug,
     :test_config,
-    :typespec,
+    :type_info,
     :namespace]
 
   @black_list [:dynamodb, :s3, :kinesis, :lambda, :support, :device_farm]
@@ -49,7 +49,7 @@ defmodule ExAwsGen.Service do
       module: service_spec[:module],
       test_config: service_spec[:test_config],
       namespace: service_spec[:namespace],
-      typespec: Typespec.build(api["shapes"], slug)
+      type_info: Typespec.build(api["shapes"], slug)
     }
   end
 

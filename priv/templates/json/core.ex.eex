@@ -14,20 +14,32 @@ defmodule ExAws.<%= @module %>.Core do
 <%= @docs["service"] |> ExAwsGen.DocParser.format %>
   """
 
-<%= @typespec %>
+<%= @type_info[:typespec] %>
 
-<%= for {op, _} <- @api["operations"] do %>
+<%= for {op, %{"input" => %{"shape" => input}, "output" => %{"shape" => output}}} <- @api["operations"] do %>
   @doc """
   <%= op %>
 
 <%= @docs["operations"][op] %>
   """
+  @spec <%= Mix.Utils.underscore(op) %>(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: {:ok, <%= @type_info[:aliases] |> HashDict.fetch!(output) %>}
   def <%= Mix.Utils.underscore(op) %>(client, input) do
     request(client, "<%= op %>", format_input(input))
+  end
+
+  @doc """
+  Same as `<%= Mix.Utils.underscore(op) %>/2` but raise on error.
+  """
+  @spec <%= Mix.Utils.underscore(op) %>!(client :: ExAws.<%= @module %>.t, input :: <%= @type_info[:aliases] |> HashDict.fetch!(input) %>) :: <%= @type_info[:aliases] |> HashDict.fetch!(output) %> | no_return
+  def <%= Mix.Utils.underscore(op) %>!(client, input) do
+    case <%= Mix.Utils.underscore(op) %>(client, input) do
+      {:ok, results} -> results
+      error -> raise "Error #{inspect(error)}"
+    end
   end
 <%= end %>
 
   defp request(%{__struct__: client_module} = client, action, input) do
-    client_module.request(client, action, input)
+    apply(client_module, :request, [client, action, input])
   end
 end

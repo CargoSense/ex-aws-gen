@@ -41,6 +41,15 @@ defmodule ExAwsGen.DocParser do
     |> String.replace("</p>", "\n\n")
     |> String.replace("<note>", "Note:")
     |> String.replace("</note>", "")
+    |> String.replace("<ol>", "\n")
+    |> String.replace("</ol>", "")
+    |> String.replace("<ul>", "\n")
+    |> String.replace("</ul>", "")
+    |> String.replace("<li>", "- ")
+    |> String.replace("</li>", "\n")
+    |> String.replace("<important>", "**")
+    |> String.replace("</important>", "**")
+    |> String.replace("<code class=\"code\">", "`\n")
   end
 
   @doc """
