@@ -75,4 +75,13 @@ defmodule ExAwsGen.Service do
   def protocol_name("query"), do: "Query"
   def protocol_file("json"), do: "json"
   def protocol_file("query"), do: "query"
+
+  def permissions do
+    all
+    |> Enum.reduce([], fn
+      {_, %{test_config: %{fun: fun}, namespace: namespace}}, permissions -> ["#{namespace}:#{Mix.Utils.camelize(fun)}" | permissions]
+      {_, %{test_config: fun, namespace: namespace}}, permissions -> ["#{namespace}:#{Mix.Utils.camelize(fun)}" | permissions]
+      _, permissions -> permissions
+    end)
+  end
 end
