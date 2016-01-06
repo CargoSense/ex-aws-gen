@@ -1,0 +1,71 @@
+defmodule ExAws.<%= @module %>.Api do
+  import ExAws.<%= @module %>.Utils, only: [format_input: 1]
+  @actions [
+<%=
+    @operations
+    |> Map.keys
+    |> Enum.map(&("    \"#{&1}\""))
+    |> Enum.join(",\n")
+  %>]
+
+  @moduledoc """
+  ## <%= @metadata["serviceFullName"] %>
+
+<%= @docs["service"] |> ExAwsGen.DocParser.format %>
+  """
+
+<%= @type_info[:typespec] %>
+
+<%= for {op, info} <- @operations do %>
+<%
+  function = Mix.Utils.underscore(op)
+  input_type_info = case info do
+    %{"input" => %{"shape" => input}} -> @type_info[:aliases] |> Map.fetch!(input)
+    _ -> nil
+  end
+  protocol_name = @protocol |> ExAwsGen.Service.protocol_name
+%>
+  @doc """
+  <%= op %>
+
+<%= @docs.operations[op] %>
+  """
+<%= if input_type_info do %>
+  @spec <%= function %>(config :: ExAws.<%= @module %>.t, input :: <%= input_type_info %>) :: ExAws.Request.<%= protocol_name %>.response_t
+  def <%= function %>(config, input) do
+    request(config, "<%= info[:aws_op] %>", format_input(input))
+  end
+
+  @doc """
+  Same as `<%= function %>/2` but raise on error.
+  """
+  @spec <%= function %>!(config :: ExAws.<%= @module %>.t, input :: <%= input_type_info %>) :: ExAws.Request.<%= protocol_name %>.success_t | no_return
+  def <%= function %>!(config, input) do
+    case <%= function %>(config, input) do
+      {:ok, results} -> results
+      error -> raise "Error #{inspect(error)}"
+    end
+  end
+<%= else %>
+  @spec <%= function %>(config :: ExAws.<%= @module %>.t) :: ExAws.Request.<%= protocol_name %>.response_t
+  def <%= function %>(config) do
+    request(config, "<%= op %>", %{})
+  end
+
+  @doc """
+  Same as `<%= function %>/2` but raise on error.
+  """
+  @spec <%= function %>!(config :: ExAws.<%= @module %>.t) :: ExAws.Request.<%= protocol_name %>.success_t | no_return
+  def <%= function %>!(config) do
+    case <%= function %>(config) do
+      {:ok, results} -> results
+      error -> raise "Error #{inspect(error)}"
+    end
+  end
+<% end %>
+<% end %>
+
+  defp request(%{__struct__: config_module} = config, action, input) do
+    apply(config_module, :request, [config, action, input])
+  end
+end

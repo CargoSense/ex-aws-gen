@@ -1,0 +1,9 @@
+<%= import ExAwsGen.Helpers %>
+defmodule ExAws.<%= @module %>.Test do
+  use ExUnit.Case, async: true
+
+  test "Basic sanity check" do
+    config = ExAws.<%= @module %>.config.new
+    assert apply(ExAws.<%= @module %>.Core, :<%= test_fun(@test_config) %>, [config | <%= inspect query_args(@test_config)%>])
+  end
+end

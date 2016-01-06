@@ -1,17 +1,18 @@
 defmodule ExAwsGen do
+  alias ExAwsGen.Context
 
-  # @output "./priv/output"
-  @output "../ex_aws"
+  @output "./priv/output"
+  # @output "../ex_aws"
   @lib_root @output <> "/lib/ex_aws/"
   @test_root @output <> "/test/lib/ex_aws/"
-  @templates "./priv/templates/"
+  @templates_dir "./lib/ex_aws_gen/templates/"
 
   def paths do
     %{
       output: @output,
       lib_root: @lib_root,
       test_root: @test_root,
-      templates: @templates,
+      templates: @templates_dir,
     }
   end
 
@@ -28,36 +29,38 @@ defmodule ExAwsGen do
     generate_service(service)
   end
 
-  def generate_service(service) do
-    service = service |> ExAwsGen.Service.build
+  def generate_service(%{slug: slug} = service) do
+    service |> mk_dirs
+
     service
-    |> files
-    |> Enum.map(&generate_file(&1, service))
+    |> write_template(Context.Api, "api.ex.eex", @lib_root <> "#{slug}/api.ex")
+    # |> write_template(Context.Service, "service.ex.eex", @lib_root <> "#{slug}.ex")
+    # |> write_template(Context.Test, "test.ex.eex", @test_root <> "#{slug}_test.exs")
   end
 
-  def generate_file({template, output}, %{protocol: protocol} = service) do
-    IO.puts "Generating #{service.name} #{output}"
+  def write_template(%{protocol: protocol} = service, context, template, destination) do
+    IO.puts "Generating #{service.name} #{destination} with #{context}"
 
-    content = @templates <> "#{protocol}/#{template}"
+    content = @templates_dir <> "#{protocol}/#{template}"
     |> File.read!
-    |> EEx.eval_string(assigns: service |> Map.from_struct)
+    |> EEx.eval_string(assigns: context.build(service))
 
-    service |> mk_dirs
-    File.write!(output, content)
+    File.write!(destination, content)
+    service
+  end
+
+  def files(%{slug: slug}) do
+    [
+      @lib_root <> "#{slug}/api.ex",
+      @lib_root <> "#{slug}.ex",
+      @test_root <> "#{slug}_test.exs",
+    ]
   end
 
   def delete_stuff(service) do
     service
     |> files
     |> Enum.map(&File.rm(&1))
-  end
-
-  def files(service) do
-    %{
-      "core.ex.eex" => @lib_root <> "#{service.slug}/core.ex",
-      "client.ex.eex" => @lib_root <> "#{service.slug}/client.ex",
-      "test.ex.eex" => @test_root <> "#{service.slug}_test.exs"
-    }
   end
 
   def mk_dirs(service) do

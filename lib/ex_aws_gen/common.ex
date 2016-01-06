@@ -1,5 +1,9 @@
 defmodule ExAwsGen.Common do
 
+  @moduledoc """
+  This module generates files that are common for all services of a given type.
+  """
+
   def generate(paths, protocol) do
     paths
     |> files(protocol)
@@ -14,14 +18,14 @@ defmodule ExAwsGen.Common do
     |> EEx.eval_string(assigns: %{protocol: protocol})
 
     File.mkdir_p(paths.lib_root <> "/request")
-    File.mkdir_p(paths.lib_root <> "/core")
+    # File.mkdir_p(paths.lib_root <> "/core")
     File.write!(output, content)
   end
 
   def files(paths, protocol) do
-    # can't interpolate in map key literals
+    # can't interpolate in map key literals :(
     %{}
-    |> Map.put("#{protocol}/utils.ex.eex", paths.lib_root <> "core/#{protocol |> ExAwsGen.Service.protocol_file}.ex")
+    # |> Map.put("#{protocol}/utils.ex.eex", paths.lib_root <> "core/#{protocol |> ExAwsGen.Service.protocol_file}.ex")
     |> Map.put("#{protocol}/request.ex.eex", paths.lib_root <> "request/#{protocol}.ex")
   end
 end

@@ -1,4 +1,4 @@
-defmodule ExAws.Core.JSON do
+defmodule ExAws.<%= @module %>.Utils do
   import ExAws.Utils, only: [camelize_key: 1]
   @moduledoc """
   Functionality used by json core files.

@@ -7,7 +7,7 @@ defmodule ExAwsGen.DocParser do
   Tranform HTML text into Markdown suitable for inclusion in a docstring
   heredoc in generated Elixir code.
   """
-  def format(text) do
+  def format(text, _mapping) do
     text
     |> html_to_markdown
     |> split_paragraphs

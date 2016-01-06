@@ -1,20 +1,19 @@
 defmodule ExAwsGen.Service do
-  alias ExAwsGen.Typespec
-  defstruct [
-    :name,
-    :docs,
-    :api,
-    :module,
-    :protocol,
-    :metadata,
-    :slug,
-    :test_config,
-    :type_info,
-    :namespace,
-    :version
-  ]
+  defstruct name: nil,
+    name_map: %{},
+    protocol: nil,
+    inverse_name_map: %{},
+    aws_api: %{},
+    module: nil,
+    protocol: nil,
+    slug: nil,
+    test_config: %{},
+    namespace: nil,
+    version: nil,
+    aws_docs: nil
 
-  @black_list [:dynamodb, :s3, :kinesis, :lambda, :support, :device_farm]
+
+  @black_list [:dynamodb, :s3, :kinesis, :lambda, :support, :device_farm, :sqs]
 
   @api_root "./priv/apis/"
 
@@ -33,48 +32,39 @@ defmodule ExAwsGen.Service do
   end
 
   def build(slug) do
-    IO.puts "Generating #{slug}"
-
     service_spec = @services[slug]
 
-    path = @api_root <> service_spec[:path] <> "/"
-    api  = get_api(path)
-    docs = get_docs(path)
+    path     = @api_root <> service_spec[:path] <> "/"
+    api      = api_json(path)
+    docs     = get_docs(path)
+    name_map = ExAwsGen.NameMap.build(slug, api)
+
+
 
     %__MODULE__{
-      slug: slug,
-      protocol: api["metadata"]["protocol"],
-      metadata: api["metadata"],
-      api: api,
-      docs: docs,
-      name: service_spec[:module],
-      module: service_spec[:module],
+      aws_api:     api,
+      aws_docs:    docs,
+      name_map:    name_map,
+      slug:        slug,
+      protocol:    api["metadata"]["protocol"],
+      name:        service_spec[:module],
+      module:      service_spec[:module],
       test_config: service_spec[:test_config],
-      namespace: service_spec[:namespace],
-      type_info: Typespec.build(api["shapes"], slug),
-      version: service_spec[:path] |> String.split("/") |> List.last,
+      namespace:   service_spec[:namespace],
+      version:     service_spec[:path] |> String.split("/") |> List.last,
+      inverse_name_map: name_map |> Enum.into(%{}, fn {k, v} -> {v, k} end),
     }
   end
 
-  def get_api(path) do
+  def api_json(path) do
     File.read!(path <> "api-2.json")
     |> Poison.decode!
   end
 
   def get_docs(path) do
-    docs = File.read!(path <> "docs-2.json")
+    File.read!(path <> "docs-2.json")
     |> Poison.decode!
-
-    docs
-    |> update_in(["operations"], &Enum.into(&1, %{}, fn {k, v} ->
-      {k, ExAwsGen.DocParser.format(v)}
-    end))
   end
-
-  def protocol_name("json"), do: "JSON"
-  def protocol_name("query"), do: "Query"
-  def protocol_file("json"), do: "json"
-  def protocol_file("query"), do: "query"
 
   def permissions do
     all

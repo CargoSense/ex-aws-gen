@@ -5,14 +5,14 @@ defmodule ExAws.Request.JSON do
   @type success_t :: %{}
   @type response_t :: {:ok, success_t} | ExAws.Request.error_t
 
-  def request(client, action, data, target_prefix, json_version) do
+  def request(config, action, data, target_prefix, json_version) do
     headers = [
       {"x-amz-target", "#{target_prefix}.#{action}"},
       {"content-type", "application/x-amz-json-#{json_version}"},
       {"x-amz-content-sha256", ""}
     ]
-    ExAws.Request.request(:post, client.config |> url, data, headers, client)
-    |> parse(client.config)
+    ExAws.Request.request(:post, config.config |> url, data, headers, config)
+    |> parse(config.config)
   end
 
   def parse({:error, result}, _), do: {:error, result}

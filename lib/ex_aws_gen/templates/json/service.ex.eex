@@ -1,4 +1,4 @@
-defmodule ExAws.<%= @module %>.Client do
+defmodule ExAws.<%= @module %> do
   defstruct config: nil, service: :"<%= @namespace %>"
 
   @type t :: %__MODULE__{config: %{}, service: atom}
@@ -23,7 +23,7 @@ defmodule ExAws.<%= @module %>.Client do
     |> Keyword.put(:"<%= @namespace %>", @defaults)
   end
 
-  def request(client, action, data) do
-    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(client, action, data, @target_prefix, @json_version)
+  def request(config, action, data) do
+    ExAws.Request.<%= @protocol |> ExAwsGen.Service.protocol_name %>.request(config, action, data, @target_prefix, @json_version)
   end
 end

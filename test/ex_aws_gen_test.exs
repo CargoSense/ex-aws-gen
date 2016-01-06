@@ -2,14 +2,27 @@ defmodule ExAwsGenTest do
   use ExUnit.Case
 
   test "the truth" do
-    ExAwsGen.Service.all_parsed
-    |> Enum.take(1)
-    |> List.first
-    |> Map.get(:api)
-    |> Map.get("shapes")
-    |> Enum.to_list
-    |> List.first
-    |> ExAwsGen.Typespec.type_specs_for_shape
+    :sns
+    |> ExAwsGen.Service.build
+    |> IO.inspect
+  end
+
+  test "#build_name_map" do
+    %{
+      "FooBar" => "Baz",
+      "Flag" => %{
+        "Asdf" => "Blurg"
+      },
+      "ListThing" => [
+        "List", "of", "values"
+      ],
+      "OtherListThing" => [
+        %{
+          "ListOf" => "maps"
+        }
+      ]
+    }
+    |> ExAwsGen.Service.build_name_map
     |> IO.inspect
   end
 end

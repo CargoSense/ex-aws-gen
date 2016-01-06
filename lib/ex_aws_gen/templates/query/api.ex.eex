@@ -1,0 +1,56 @@
+defmodule ExAws.<%= @module %>.Api do
+  import <%= @request_module %>, only: [request: 3]
+  @actions [
+<%=
+    @operations
+    |> Map.keys
+    |> Enum.map(&("    \"#{&1}\""))
+    |> Enum.join(",\n")
+  %>]
+
+  @moduledoc """
+<%= @module_doc %>
+  """
+
+<%= @typespecs %>
+<%= for {fun, op_info} <- @operations do %>
+  @doc """
+  <%= op_info.aws_op %>
+
+<%= @docs[fun] %>
+  """
+<%= if op_info[:input_type_name] do %>
+  @spec <%= fun %>(config :: ExAws.Config.t, input :: <%= op_info[:input_type_name] %>) :: <%= @request_module %>.response_t
+  def <%= fun %>(config, input) do
+    request(config, "<%= @uri %>", "<%= fun %>", input)
+  end
+
+  @doc """
+  Same as `<%= fun %>/2` but raise on error.
+  """
+  @spec <%= fun %>!(config :: ExAws.Config.t, input :: <%= op_info[:input_type_name] %>) :: <%= @request_module %>.success_t | no_return
+  def <%= fun %>!(config, input) do
+    case <%= fun %>(config, input) do
+      {:ok, results} -> results
+      error -> raise "Error #{inspect(error)}"
+    end
+  end
+<%= else %>
+  @spec <%= fun %>(config :: ExAws.Config.t) :: <%= @request_module %>.response_t
+  def <%= fun %>(config) do
+    request(config, "<%= @uri %>", "<%= op_info.aws_op %>", [])
+  end
+
+  @doc """
+  Same as `<%= fun %>/2` but raise on error.
+  """
+  @spec <%= fun %>!(config :: ExAws.Config.t) :: <%= @request_module %>.success_t | no_return
+  def <%= fun %>!(config) do
+    case <%= fun %>(config) do
+      {:ok, results} -> results
+      error -> raise "Error #{inspect(error)}"
+    end
+  end
+<% end %>
+<%= end %>
+end
