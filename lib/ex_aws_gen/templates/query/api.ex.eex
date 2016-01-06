@@ -22,7 +22,7 @@ defmodule ExAws.<%= @module %>.Api do
 <%= if op_info[:input_type_name] do %>
   @spec <%= fun %>(config :: ExAws.Config.t, input :: <%= op_info[:input_type_name] %>) :: <%= @request_module %>.response_t
   def <%= fun %>(config, input) do
-    request(config, "<%= @uri %>", "<%= fun %>", input)
+    request(config, "<%= op_info.uri %>", "<%= fun %>", input)
   end
 
   @doc """
@@ -38,7 +38,7 @@ defmodule ExAws.<%= @module %>.Api do
 <%= else %>
   @spec <%= fun %>(config :: ExAws.Config.t) :: <%= @request_module %>.response_t
   def <%= fun %>(config) do
-    request(config, "<%= @uri %>", "<%= op_info.aws_op %>", [])
+    request(config, "<%= op_info.uri %>", "<%= op_info.aws_op %>", [])
   end
 
   @doc """

@@ -8,7 +8,6 @@ defmodule ExAwsGen.Context.Api do
       module: service.module,
       operations: build_operations(service),
       typespecs: Typespec.build(service),
-      uri: service.aws_api["http"]["requestUri"],
       docs: build_docs(service),
       module_doc: service.aws_docs["service"] |> ExAwsGen.DocParser.format(service.name_map)
     }
@@ -25,6 +24,7 @@ defmodule ExAwsGen.Context.Api do
       info = %{
         aws_op: name,
         input_type_name: input_type_name,
+        uri: data["http"]["requestUri"] || raise "needs uri"
       }
 
       Map.put(ops, Map.fetch!(mapping, name), info)

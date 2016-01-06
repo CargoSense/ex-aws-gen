@@ -7,12 +7,24 @@ defmodule ExAwsGen.DocParser do
   Tranform HTML text into Markdown suitable for inclusion in a docstring
   heredoc in generated Elixir code.
   """
-  def format(text, _mapping) do
+  def format(text, mapping) do
+    text
+    |> prepare
+    |> replace_mapping(mapping)
+  end
+
+  def prepare(text) do
     text
     |> html_to_markdown
     |> split_paragraphs
     |> Enum.map(&(justify_line(&1)))
     |> Enum.join("\n\n")
+  end
+
+  def replace_mapping(doc, mapping) do
+    Enum.reduce(mapping, doc, fn {k, v}, text ->
+      String.replace(text, "`#{k}`", "`:#{v}`")
+    end)
   end
 
   @doc """

@@ -39,7 +39,7 @@ defmodule ExAwsGen do
   end
 
   def write_template(%{protocol: protocol} = service, context, template, destination) do
-    IO.puts "Generating #{service.name} #{destination} with #{context}"
+    IO.puts "Generating #{service.name} #{destination}"
 
     content = @templates_dir <> "#{protocol}/#{template}"
     |> File.read!
